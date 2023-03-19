@@ -154,27 +154,43 @@ public class Hammurabi {
     }
 
     public int plagueDeaths(int population) {
-        int sickDeaths = 0;
+        if(random.nextInt(100)<=15) {
+            return population / 2;
+        }
         return 0;
       }
 
     public int starvationDeaths(int population, int bushelsFedToPeople) {
-        int pplStarved = 0;
-        return 0;
+        int bushelsPerPerson = 20;
+        int totalBushelsRequired = population * bushelsPerPerson;
+
+        if (bushelsFedToPeople >= totalBushelsRequired) {
+            return 0; // No deaths from starvation
+        } else {
+            int bushelsShortage = totalBushelsRequired - bushelsFedToPeople;
+            int deathsFromStarvation = bushelsShortage / bushelsPerPerson;
+            return deathsFromStarvation;
+        }
      }
 
     public boolean uprising(int population, int howManyPeopleStarved) {
-        return false;
+        int peopleStarving = howManyPeopleStarved / population * 100;
+
+        if (peopleStarving > 45) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
         public int immigrants(int population, int acresOwned, int grainInStorage) {
-        int newComers = 0;
-        return 0;
+        return (20 * acresOwned + grainInStorage) / (100 * population) + 1;
     }
 
-    public int harvest(int acres, int bushelsUsedAsSeed) {
-        int money = 0;
-        return 0;
+    public int harvest(int acres) {
+        int grainYield = random.nextInt(6) + 1;
+
+        return acres * grainYield;
     }
 
     public int grainEatenByRats(int bushels) {
