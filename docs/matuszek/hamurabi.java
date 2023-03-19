@@ -9,9 +9,21 @@ import java.util.Scanner;
 // (how the hell would you ever be able to TEST this piece of code?)
 //
 public class HAMURABI {
-	static int totalDeaths = 0, percentDied = 0, year = 0, population = 95, stores = 2800, immigrants = 5, deaths,
-		harvest = 3000, yeild = 3, acres = harvest / yeild, eaten = harvest - stores, landPrice, fullPeople, temp;
-	static boolean plague = false;
+	static int totalDeaths = 0;
+			int percentDied = 0;
+			int year = 0;
+			int population = 95;
+			int stores = 2800;
+			int immigrants = 5;
+			int deaths;
+			int harvest = 3000;
+			int yeild = 3;
+			int acres = harvest / yeild;
+			int eaten = harvest - stores;
+			int landPrice;
+			int fullPeople;
+			int temp;
+			static boolean plague = false;
 	final static String FINK = "DUE TO THIS EXTREME MISMANAGEMENT YOU HAVE NOT ONLY\n" +
 		"BEEN IMPEACHED AND THROWN OUT OF OFFICE BUT YOU HAVE\n" +
 		"ALSO BEEN DECLARED PERSONA NON GRATA!!\n";
