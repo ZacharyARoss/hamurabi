@@ -37,7 +37,8 @@ public class Hammurabi {
         population += immigrants;
 
         int landprice = newCostOfLand();
-        System.out.println("O great Harambe!\n" +
+        System.out.println("--------------------------------------------------------------------------------\n" +
+                        "O great Harambe!\n" +
                         "You are in year " + year + " of your ten year rule.\n" +
                         "In the previous year " + totalDeaths + " people starved to death.\n" +
                         "In the previous year " + immigrants +" people entered the kingdom.\n" +
@@ -45,7 +46,8 @@ public class Hammurabi {
                         "We harvested" + harvest + " bushels at " + yeild + " bushels per acre.\n" +
                         "Rats destroyed 200 bushels, leaving " + stores + " bushels in storage.\n" +
                         "The city owns 1000 acres of land.\n" +
-                        "Land is currently worth 19 bushels per acre.");
+                        "Land is currently worth 19 bushels per acre.\n" +
+                        "--------------------------------------------------------------------------------");
 
         //initial variables
         int population = 100;
@@ -55,12 +57,28 @@ public class Hammurabi {
 
         while (year <= 10 && population > 0 && bushels > 0){
 
+            int acresToBuy = askHowManyAcresToBuy(bushelsPerAcre, bushels);
+            acresOfLand += acresToBuy;
+            bushels -= acresToBuy * bushelsPerAcre;
+
+            if(acresToBuy == 0) {
+                int acresToSell = askHowManyAcresToSell(acresOfLand);
+                acresOfLand -= acresToSell;
+                bushels += acresToSell * bushelsPerAcre;
+            }
+
+            int totalFood = askHowMuchGrainToFeedPeople(bushels);
+            bushels -= totalFood;
+
+            int acresToPlant = askHowManyAcresToPlant(acresOfLand,population,bushels);
+            bushels -= acresToPlant * 2;
+
         }
 
 
     }
 
-
+// -----------------------------------------------------------------------------------
     public int askHowManyAcresToBuy(int price, int bushels) {
         int acresToBuy = 0;
         while (true) {
@@ -121,10 +139,13 @@ public class Hammurabi {
             System.out.println("How many acres would you like to plant with grain?");
             try {
                 acresToPlant = input.nextInt();
-                if (acresToPlant <= acresOwned) {
+                if (acresToPlant <= acresOwned
+                    && acresToPlant <= population * 10
+                    && acresToPlant <= bushels * 2
+                    ) {
                     return acresToPlant;
                 }
-                System.out.println("You do not have enough acres for that!");
+                System.out.println("We do not have the capacity!");
             } catch (InputMismatchException e) {
                 System.out.println("\"" + input.next() + "\" isn't a number!");
             }
