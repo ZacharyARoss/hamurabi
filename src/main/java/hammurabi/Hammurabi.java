@@ -174,9 +174,9 @@ public class Hammurabi {
      }
 
     public boolean uprising(int population, int howManyPeopleStarved) {
-        int peopleStarving = howManyPeopleStarved / population * 100;
+        double peopleStarving = ((double) howManyPeopleStarved / population) * 100;
 
-        if (peopleStarving > 45) {
+        if (peopleStarving >= 45) {
             return true;
         } else {
             return false;
@@ -201,11 +201,11 @@ public class Hammurabi {
         if (random.nextDouble() < 0.4) {
             // Rats eat between 10% and 30% of the grain
             double eatenPercentage = 0.1 + random.nextDouble() * 0.2;
-            grainEaten = (int) Math.round(bushels * eatenPercentage);
+          grainEaten = (int) Math.round(bushels * eatenPercentage);
 
 
         }
-        return 0;
+        return grainEaten;
     }
         public int newCostOfLand(){
             int[] costOfLand = new int[]{17, 18, 19, 20, 21, 22, 23};
