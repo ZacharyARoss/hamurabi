@@ -167,7 +167,7 @@ public class Hammurabi {
         if (bushelsFedToPeople >= totalBushelsRequired) {
             return 0; // No deaths from starvation
         } else {
-            int bushelsShortage = totalBushelsRequired - bushelsFedToPeople;
+            int  bushelsShortage = totalBushelsRequired - bushelsFedToPeople;
             int deathsFromStarvation = bushelsShortage / bushelsPerPerson;
             return deathsFromStarvation;
         }
@@ -212,7 +212,7 @@ public class Hammurabi {
             int randomIndex = random.nextInt(costOfLand.length);
             int randomNumber = costOfLand[randomIndex];
 
-            return 0;
+            return randomNumber;
         }
 
 
